@@ -29,7 +29,7 @@ process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
 # Verify model has started before moving on, or timeout
 timeout = time.time()+10 # 10 second timeout
 while True:
-	if "Info: FVP_MPS2_Cortex_M33: CADI Debug Server started for ARM Models..." in output_line:
+	if "Info: FVP_MPS2_Cortex_M33: CADI Debug Server started for ARM Models..." in process.stdout.readlines():
 		break
 	if time.time() > timeout:
 		print 'Error; model never seemed to start. Exiting python script.'
