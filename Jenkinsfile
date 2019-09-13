@@ -10,14 +10,15 @@ pipeline {
     stage('test') {
       agent {
         docker {
-          image 'node:7-alpine'
+          image 'test-bare-metal-env:latest'
         }
 
       }
       steps {
         sh '''# Verify where we are
 ls
-node --version
+ls ~
+ls /
 
 # Source setup code
 source /arm_tools/init.sh
