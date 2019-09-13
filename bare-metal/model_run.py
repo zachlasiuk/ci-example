@@ -13,6 +13,7 @@ except KeyError as e:
 
 from fm.debug import *
 
+print 'At start of python script'
 
 # Check Arguments
 if len(sys.argv) != 5:
@@ -29,13 +30,14 @@ process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
 # Verify model has started before moving on, or timeout
 timeout = time.time()+10 # 10 second timeout
 while True:
-	if "Info: FVP_MPS2_Cortex_M33: CADI Debug Server started for ARM Models..." in process.stdout.readlines():
+	if "CADI Debug Server started" in process.stdout.readlines():
 		break
 	if time.time() > timeout:
 		print 'Error; model never seemed to start. Exiting python script.'
 		sys.exit()
 	time.sleep(0.5)
 
+print 'readlines exited, found CADI debug started'
 
 # Connect to the running model on local host
 m = NetworkModel(sys.argv[1], int(sys.argv[2]))
