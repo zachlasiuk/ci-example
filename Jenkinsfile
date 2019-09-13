@@ -49,7 +49,7 @@ cp result.xml $WORKSPACE'''
   }
   post {
     always {
-      junit 'result.xml'
+      junit '**/result.xml'
 
     }
 
