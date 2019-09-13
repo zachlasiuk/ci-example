@@ -16,6 +16,7 @@ pipeline {
       }
       steps {
         sh '''# Verify where we are
+ls
 ls ~/arm-tools/
 
 # Source setup code
