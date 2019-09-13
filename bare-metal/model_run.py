@@ -21,14 +21,6 @@ if len(sys.argv) != 5:
     sys.exit()
 
 
-# Verify output directory exists; if not, create it
-current_dir = os.path.abspath(__file__)+'/'
-output_dir = current_dir+'output/'
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-
-
-
 # Start model process running, verify it has started before moving on
 cmd = ['/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GATING=1','-C','fvp_mps2.platform_type=1','--cadi-server']
 print cmd
