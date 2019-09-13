@@ -20,27 +20,9 @@ if len(sys.argv) != 5:
     sys.exit()
 
 
-### Subprocess executing function
-def execute(cmd):
-    popen = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-    for stdout_line in iter(popen.stdout.readline, ""):
-        yield stdout_line 
-    popen.stdout.close()
-    return_code = popen.wait()
-    if return_code:
-        raise subprocess.CalledProcessError(return_code, cmd)
-
-
-
-
-
 # Start model process running, verify it has started before moving on
-script_dir = sys.path[0]
-cmd = [script_dir+'/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GATING=1','-C','fvp_mps2.platform_type=1','--cadi-server']
+cmd = ['/home/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GATING=1','-C','fvp_mps2.platform_type=1','--cadi-server']
 print cmd
-#for output_line in execute(cmd):
-#	if "CADI Debug Server started" in output_line:
-#		break
 
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 # Verify model has started before moving on, or timeout
