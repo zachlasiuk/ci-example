@@ -34,15 +34,16 @@ pkill FVP_MPS2_Cortex
 # Run test
 python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf outputs/output.test
 
+# Verify test output exists
+cat outputs/output.test'''
+        sh '''# Convert to junit output
+python /home/unity_to_junit.py outputs/
+ls
 cat outputs/output.test
 
-# Convert to junit output
-python /home/unity_to_junit.py outputs/
-ls outputs/
-ls /home/
-ls
 
-cat outputs/output.test'''
+# Copy output to junit workspace
+cp result.xml $WORKSPACE'''
       }
     }
   }
