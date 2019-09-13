@@ -48,7 +48,7 @@ cat outputs/output.test'''
   }
   post {
     always {
-      junit 'results.xml'
+      junit 'result.xml'
 
     }
 
