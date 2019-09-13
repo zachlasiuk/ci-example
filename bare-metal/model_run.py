@@ -25,10 +25,13 @@ cmd = ['/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GA
 print cmd
 
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+
 # Verify model has started before moving on, or timeout
 timeout = time.time()+10 # 10 second timeout
 while True:
-	if "Info: FVP_MPS2_Cortex_M33: CADI Debug Server started for ARM Models..." in process.stdout.readline():
+	output_line = process.stdout.readline()
+	print output_line
+	if "Info: FVP_MPS2_Cortex_M33: CADI Debug Server started for ARM Models..." in output_line:
 		break
 	if time.time() > timeout:
 		print 'Error; model never seemed to start. Exiting python script.'
