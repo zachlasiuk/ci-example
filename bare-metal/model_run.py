@@ -53,13 +53,11 @@ cpu.load_application(sys.argv[3])
 cpu.stdout = open(sys.argv[4], 'w')
 
 # Start model execution
-m.stop()
 cpu.reset
 m.run()
 time.sleep(2)
 
 # Stop model execution
-m.stop()
 m.release()
 
 sys.exit(0)
