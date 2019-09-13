@@ -50,7 +50,7 @@ cpu = m.get_cpus()[0]
 cpu.load_application(sys.argv[3])
 
 # Write stdout to a file
-cpu.stdout = open(output_dir+sys.argv[4], 'w')
+cpu.stdout = open(sys.argv[4], 'w')
 
 # Start model execution
 cpu.reset
