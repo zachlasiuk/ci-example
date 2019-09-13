@@ -31,27 +31,35 @@ RUN apt-get install -y --fix-missing \
 
 
 ### Tool version selection
-#ARG FM_INSTALL=FastModels_11-7-035_Linux64
-#ARG FM_DIR=FastModelsTools_11.7
+ARG FM_INSTALL=FastModels_11-7-035_Linux64
+ARG FM_DIR=FastModelsTools_11.7
+
 ### Install Fast Models
 # # Copy Fast Model install file from same directory as this Dockerfile
-#COPY $FM_INSTALL.tgz /home/
+COPY $FM_INSTALL.tgz /home/
+
 # # install Fast Models, delete artifacts
-#RUN tar xvzf /home/$FM_INSTALL.tgz            &&\
-#		cd $FM_INSTALL                &&\
-#		./setup.sh --i-accept-the-license-agreement --basepath /arm-tools/     &&\
-#		rm /home/$FM_INSTALL.tgz      &&\
-#		rm -r /$FM_INSTALL/
+RUN tar xvzf /home/$FM_INSTALL.tgz            &&\
+		cd $FM_INSTALL                &&\
+		./setup.sh --i-accept-the-license-agreement --basepath /arm-tools/     &&\
+		rm /home/$FM_INSTALL.tgz      &&\
+		rm -r /$FM_INSTALL/
+
 # # add setup to /init.sh
-#RUN echo "set +e; . /arm-tools/$FM_DIR/source_all.sh" >> /arm-tools/init.sh
+RUN echo "set +e; . /arm-tools/$FM_DIR/source_all.sh" >> /arm-tools/init.sh
+
 # # add init.sh to bashrc
-#RUN echo "source /arm-tools/init.sh"
+RUN echo "source /arm-tools/init.sh"
 
 
 ### Add FVP
 ARG FVP_TAR=Cortex-M33-FVP.tar
 ADD $FVP_TAR /home/
 
-
 ### Set License
 ENV ARMLMD_LICENSE_FILE=7010@localhost
+
+
+### Add software
+COPY IOTKit_ARMv8MBL_test.axf /home/
+COPY model_run.py /home/
