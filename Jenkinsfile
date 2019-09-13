@@ -30,7 +30,7 @@ pkill FVP_MPS2_Cortex
 #/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33 -C fvp_mps2.DISABLE_GATING=1 -C fvp_mps2.platform_type=1 --cadi-server
 
 # Run test
-python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf /home/output/output.txt
+python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf output.txt
 
 cat /home/output/output.txt
 
