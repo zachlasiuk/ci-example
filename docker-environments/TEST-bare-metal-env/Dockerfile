@@ -28,7 +28,7 @@ RUN apt-get install -y --fix-missing \
 	libxt6       \
 	libxinerama1
 ## Unity Junit conversion dependencies
-RUN pip install pyparsing
+RUN pip install pyparsing junit-xml
 
 
 ### Tool version selection
