@@ -21,10 +21,10 @@ pwd
 ls ~
 cd ~
 ls
-ls ~/arm_tools/
+ls ~/arm-tools/
 
 # Source setup code
-source /arm_tools/init.sh
+source /arm-tools/init.sh
 
 # Start model
 /home/Cortex-M33-FVP/FVP_MPS2_Cortex-M33 -C fvp_mps2.DISABLE_GATING=1 -C fvp_mps2.platform_type=1 --cadi-server &
