@@ -41,9 +41,7 @@ python /home/unity_to_junit.py outputs/
 ls
 cat outputs/output.test
 
-
-# Copy output to junit workspace
-cp result.xml $WORKSPACE'''
+'''
       }
     }
   }
