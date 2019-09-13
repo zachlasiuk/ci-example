@@ -21,7 +21,7 @@ if len(sys.argv) != 5:
 
 
 # Start model process running, verify it has started before moving on
-cmd = ['/home/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GATING=1','-C','fvp_mps2.platform_type=1','--cadi-server']
+cmd = ['/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GATING=1','-C','fvp_mps2.platform_type=1','--cadi-server']
 print cmd
 
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)

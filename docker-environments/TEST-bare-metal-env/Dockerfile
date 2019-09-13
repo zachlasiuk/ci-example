@@ -54,7 +54,7 @@ RUN echo "source /arm-tools/init.sh"
 
 ### Add FVP
 ARG FVP_TAR=Cortex-M33-FVP.tar
-ADD $FVP_TAR /home/
+ADD $FVP_TAR /arm-tools/
 
 ### Set License
 ENV ARMLMD_LICENSE_FILE=7010@localhost
@@ -62,4 +62,3 @@ ENV ARMLMD_LICENSE_FILE=7010@localhost
 
 ### Add software
 COPY IOTKit_ARMv8MBL_test.axf /home/
-COPY model_run.py /home/
