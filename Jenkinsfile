@@ -39,6 +39,9 @@ cat outputs/output.test
 # Convert to junit output
 python /home/unity_to_junit.py outputs/
 ls outputs/
+ls /home/
+ls
+
 cat outputs/output.test'''
       }
     }
