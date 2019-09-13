@@ -56,8 +56,15 @@ RUN echo "source /arm-tools/init.sh"
 ARG FVP_TAR=Cortex-M33-FVP.tar
 ADD $FVP_TAR /arm-tools/
 
+### Add unity2junit result conversion file, make output directory for test results
+ADD unity_to_junit.py /home/
+RUN mkdir /home/output
+
 ### Set License
 ENV ARMLMD_LICENSE_FILE=7010@localhost
+
+
+#### TEMPORARY, TO BE REPLACED LATER
 
 
 ### Add software
