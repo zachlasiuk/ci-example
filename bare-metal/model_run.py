@@ -19,7 +19,7 @@ if len(sys.argv) != 5:
     print "Usage: %s <model_hostname> <model_port> <application_axf> <output_file>" % sys.argv[0]
     sys.exit()
 
-'''
+
 # Start model process running, verify it has started before moving on
 cmd = ['/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GATING=1','-C','fvp_mps2.platform_type=1','--cadi-server']
 print cmd
@@ -35,7 +35,7 @@ while True:
 		print 'Error; model never seemed to start. Exiting python script.'
 		sys.exit()
 	time.sleep(0.5)
-'''
+
 
 # Connect to the running model on local host
 m = NetworkModel(sys.argv[1], int(sys.argv[2]))
