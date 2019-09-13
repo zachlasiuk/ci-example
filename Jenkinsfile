@@ -15,7 +15,10 @@ pipeline {
 
       }
       steps {
-        sh '''# Source setup code
+        sh '''# Verify where we are
+ls
+
+# Source setup code
 source /arm_tools/init.sh
 
 # Start model
