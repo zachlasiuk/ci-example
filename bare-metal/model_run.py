@@ -5,7 +5,7 @@ import time
 
 # Set python path to Fast Models
 try:
-    sys.path.append(os.path.join(os.environ['PVLIB_HOME'], 'lib', 'python27')) 
+    sys.path.append(os.path.join(os.environ['PVLIB_HOME'], 'lib', 'python27'))
 except KeyError as e:
     print "Error! Make sure you source all from the fast models directory. Try something like this:"
     print "$ source <FMinstallDirectory>/FastModelsTools_11.0/source_all.sh"
@@ -26,7 +26,8 @@ cmd = ['/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GA
 print cmd
 
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-
+time.sleep(2)
+'''
 # Verify model has started before moving on, or timeout
 timeout = time.time()+10 # 10 second timeout
 while True:
@@ -36,7 +37,7 @@ while True:
 		print 'Error; model never seemed to start. Exiting python script.'
 		sys.exit()
 	time.sleep(0.5)
-
+'''
 print 'readlines exited, found CADI debug started'
 
 # Connect to the running model on local host
