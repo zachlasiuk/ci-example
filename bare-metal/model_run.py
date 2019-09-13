@@ -21,6 +21,14 @@ if len(sys.argv) != 5:
     sys.exit()
 
 
+# Verify output directory exists; if not, create it
+current_dir = sys.argv[0]+'/'
+output_dir = current_dir+'output/'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+
+
 # Start model process running, verify it has started before moving on
 cmd = ['/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33','-C','fvp_mps2.DISABLE_GATING=1','-C','fvp_mps2.platform_type=1','--cadi-server']
 print cmd
@@ -50,7 +58,7 @@ cpu = m.get_cpus()[0]
 cpu.load_application(sys.argv[3])
 
 # Write stdout to a file
-cpu.stdout = open(sys.argv[4], 'w')
+cpu.stdout = open(output_dir+sys.argv[4], 'w')
 
 # Start model execution
 cpu.reset
