@@ -15,6 +15,13 @@ pipeline {
         }
 
       }
+      post {
+        always {
+          junit '**/result.xml'
+
+        }
+
+      }
       steps {
         sh '''# make results directory
 mkdir outputs/'''
@@ -39,17 +46,10 @@ cat outputs/output.test'''
         sh '''# Convert to junit output
 python /home/unity_to_junit.py outputs/
 ls
-cat outputs/output.test
+cat result.xml
 
 '''
       }
     }
-  }
-  post {
-    always {
-      junit '**/result.xml'
-
-    }
-
   }
 }
