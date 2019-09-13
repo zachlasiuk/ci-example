@@ -27,7 +27,7 @@ sleep 5s
 
 
 # Run test
-python model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf output.test
+python model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf output.txt
 
 cat output.txt
 
