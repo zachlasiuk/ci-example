@@ -15,6 +15,13 @@ pipeline {
         }
 
       }
+      post {
+        always {
+          junit '**/result.xml'
+
+        }
+
+      }
       steps {
         sh '''# make results directory
 mkdir outputs/'''
@@ -32,14 +39,16 @@ pkill FVP_MPS2_Cortex
 #/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33 -C fvp_mps2.DISABLE_GATING=1 -C fvp_mps2.platform_type=1 --cadi-server
 
 # Run test
-python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf outputs/output.txt
+python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf outputs/output.test
 
-cat outputs/output.txt
-
-# Convert to junit output
+# Verify test output exists
+cat outputs/output.test'''
+        sh '''# Convert to junit output
 python /home/unity_to_junit.py outputs/
-ls outputs/
-cat outputs/output.txt'''
+ls
+cat result.xml
+
+'''
       }
     }
   }
