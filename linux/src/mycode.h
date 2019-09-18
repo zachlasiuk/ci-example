@@ -1,2 +1,0 @@
-double squareRoot(const double);
-
