@@ -54,6 +54,13 @@ cat result.xml
           }
         }
         stage('Linux') {
+          agent {
+            docker {
+              args '--network host'
+              image 'test-linux-env:latest'
+            }
+
+          }
           steps {
             sh '''# make results directory
 mkdir outputs/'''
