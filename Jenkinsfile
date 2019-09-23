@@ -53,7 +53,7 @@ cat result.xml
 '''
           }
         }
-        stage('loinux') {
+        stage('linux') {
           agent {
             docker {
               image 'test-linux-env:latest'
