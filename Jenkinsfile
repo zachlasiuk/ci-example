@@ -60,6 +60,13 @@ cat result.xml
             }
 
           }
+          post {
+            always {
+              junit '**/result.xml'
+
+            }
+
+          }
           steps {
             sh '''# make results directory
 mkdir outputs/'''
@@ -72,6 +79,9 @@ python -m pytest --junitxml=outputs/output.test linux/test/test.py
 
 # Verify test output exists
 cat outputs/output.test'''
+            sh '''# Rename test output for Jenkins to find it
+cp outputs/output.test result.xml
+'''
           }
         }
       }
