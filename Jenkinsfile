@@ -65,7 +65,7 @@ cat result.xml
 mkdir outputs/'''
             sh '''# Run test
 ls linux/
-ls linux/tests/
+ls linux/test/
 ls linux/src
 
 python -m pytest linux/
