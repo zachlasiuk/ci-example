@@ -1,18 +1,27 @@
 import sys
 import socket
 
-# initalize web connection
-s = initWebConnection('localhost',50005)
+device_data = ['data1','data2','data3','data4']
 
-# Send collected data
-s.send('Device data')
+def main():
+	# initalize web connection
+	s = initWebCon('www.google.com',80)
 
-# Process message return
-data=s.recv(1024)
-print 'recieved: ',data
-s.close()
+	# Send rolling collected data
+	for data in device_data:
+		sendDeviceData(s,data)
 
-def initWebConnection(server_host,server_port):
-	s = socket(AF_INET,SOCK_STREAM)
-	s.connect((server_host,server_port))
-	return s
+def initWebCon(host,port):
+        s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        s.connect((host,port))
+        return s
+
+def sendDeviceData(s,data):
+        try:
+                print "Sending: ", data
+                s.send(data)
+        except:
+                print "Error sending device data"
+
+if __name__ in "__main__":
+	sys.exit(main())
