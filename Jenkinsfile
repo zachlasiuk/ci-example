@@ -8,24 +8,26 @@ pipeline {
       }
     }
     stage('test') {
-      agent {
-        docker {
-          image 'test-bare-metal-env:latest'
-          args '--network host'
-        }
+      parallel {
+        stage('test') {
+          agent {
+            docker {
+              image 'test-bare-metal-env:latest'
+              args '--network host'
+            }
 
-      }
-      post {
-        always {
-          junit '**/result.xml'
+          }
+          post {
+            always {
+              junit '**/result.xml'
 
-        }
+            }
 
-      }
-      steps {
-        sh '''# make results directory
+          }
+          steps {
+            sh '''# make results directory
 mkdir outputs/'''
-        sh '''# Verify where we are
+            sh '''# Verify where we are
 ls
 ls /
 ls /home/
@@ -43,12 +45,25 @@ python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf out
 
 # Verify test output exists
 cat outputs/output.test'''
-        sh '''# Convert to junit output
+            sh '''# Convert to junit output
 python /home/unity_to_junit.py outputs/
 ls
 cat result.xml
 
 '''
+          }
+        }
+        stage('Linux') {
+          steps {
+            sh '''# make results directory
+mkdir outputs/'''
+            sh '''# Run test
+pytest linux/
+
+# Verify test output exists
+cat outputs/output.test'''
+          }
+        }
       }
     }
   }
