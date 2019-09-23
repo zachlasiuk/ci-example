@@ -68,7 +68,7 @@ ls linux/
 ls linux/test/
 ls linux/src
 
-python -m pytest linux/test.py
+python -m pytest linux/test/test.py
 
 # Verify test output exists
 cat outputs/output.test'''
