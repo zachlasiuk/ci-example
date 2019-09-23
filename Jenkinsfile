@@ -56,7 +56,6 @@ cat result.xml
         stage('Linux') {
           agent {
             docker {
-              args '--network host'
               image 'test-linux-env:latest'
             }
 
@@ -65,7 +64,7 @@ cat result.xml
             sh '''# make results directory
 mkdir outputs/'''
             sh '''# Run test
-pytest linux/
+python -m pytest linux/
 
 # Verify test output exists
 cat outputs/output.test'''
