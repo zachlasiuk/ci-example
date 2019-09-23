@@ -38,8 +38,7 @@ ls /arm-tools/
 
 # Kill all other running instances
 pkill FVP_MPS2_Cortex
-#/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33 -C fvp_mps2.DISABLE_GATING=1 -C fvp_mps2.platform_type=1 --cadi-server
-
+/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33 -C fvp_mps2.DISABLE_GATING=1 -C fvp_mps2.platform_type=1 --cadi-server &sleep 2s
 # Run test
 python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf outputs/output.test
 
