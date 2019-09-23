@@ -64,6 +64,10 @@ cat result.xml
             sh '''# make results directory
 mkdir outputs/'''
             sh '''# Run test
+ls linux/
+ls linux/tests/
+ls linux/src
+
 python -m pytest linux/
 
 # Verify test output exists
