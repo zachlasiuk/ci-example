@@ -41,6 +41,7 @@ cat ./bare-metal/IOTKit_ARMv8MBL_test.axf'''
 # Verify existence of test axf
 cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
         archiveArtifacts 'bare-metal/IOTKit_ARMv8MBL_test.axf'
+        stash(name: 'bare-metal-app', includes: 'bare-metal/IOTKit_ARMv8MBL_test.axf')
       }
     }
     stage('test') {
@@ -61,6 +62,7 @@ cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
 
           }
           steps {
+            unstash 'bare-metal-app'
             sh '''# make results directory
 mkdir outputs/'''
             sh '''# Verify where we are
@@ -86,6 +88,10 @@ python /home/unity_to_junit.py outputs/
 ls
 cat result.xml
 
+'''
+            sh '''#verify unstash successful
+ls
+ls bare-metal/
 '''
           }
         }
