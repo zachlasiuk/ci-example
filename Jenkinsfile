@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('Build') {
       agent {
-        dockerfile {
-          filename 'docker-environments/BUILD-bare-metal-env/Dockerfile'
-          additionalBuildArgs '--build-arg AC_DIR=./ --build-arg AC_INSTALL=DS500-BN-00026-r5p0-14rel0.tgz'
+        docker {
+          args '--network host'
+          image 'build-bare-metal-env:latest'
         }
 
       }
