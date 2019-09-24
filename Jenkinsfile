@@ -1,11 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
+    stage('Build') {
       agent {
-        docker {
-          image 'build-bare-metal-env:latest'
-          args '--network host'
+        dockerfile {
+          filename 'docker-environments/BUILD-bare-metal-env/Dockerfile'
+          args '--build-arg AC_DIR=/home/ubuntu/arm-tool-tars/ --build-arg AC_INSTALL=DS500-BN-00026-r5p0-14rel0.tgz'
         }
 
       }
@@ -44,7 +44,7 @@ cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
         stash(name: 'bare-metal-app', includes: 'bare-metal/IOTKit_ARMv8MBL_test.axf')
       }
     }
-    stage('test') {
+    stage('Test') {
       parallel {
         stage('bare-metal') {
           agent {
