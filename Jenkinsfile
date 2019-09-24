@@ -40,6 +40,7 @@ cat ./bare-metal/IOTKit_ARMv8MBL_test.axf'''
 
 # Verify existence of test axf
 cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
+        archiveArtifacts 'bare-metal/IOTKit_ARMv8MBL_test.axf'
       }
     }
     stage('test') {
