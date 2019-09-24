@@ -14,10 +14,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
 
 ### System Functionality ###
-#RUN apt-get install -y apt-utils iputils-ping python2.7
-#RUN apt-get install -y python-pip
+RUN apt-get install -y apt-utils iputils-ping make
 
-## AC6 dependencies
+## Test functionality
+RUN apt install -y ruby-full
 #RUN apt-get install -y --fix-missing \
 
 RUN mkdir /arm-tools/
@@ -38,4 +38,4 @@ RUN rm -rf $TMP_DIR
 
 # # add setup to /init.sh (adding to path)
 RUN echo "export PATH=$PATH:/arm-tools/AC6/bin" >> /arm-tools/init.sh
-
+RUN echo "export ARMLMD_LICENSE_FILE=7010@localhost" >> /arm-tools/init.sh
