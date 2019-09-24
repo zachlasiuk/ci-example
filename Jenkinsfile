@@ -5,7 +5,7 @@ pipeline {
       agent {
         dockerfile {
           filename 'docker-environments/BUILD-bare-metal-env/Dockerfile'
-          additionalBuildArgs '--build-arg AC_DIR=../../../../../../../../../../home/ubuntu/arm-tool-tars/ --build-arg AC_INSTALL=DS500-BN-00026-r5p0-14rel0.tgz'
+          additionalBuildArgs '--build-arg AC_DIR=./ --build-arg AC_INSTALL=DS500-BN-00026-r5p0-14rel0.tgz'
         }
 
       }
