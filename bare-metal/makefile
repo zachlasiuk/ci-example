@@ -73,4 +73,9 @@ build_prod:
 
 clean:
 	$(call RM,./Objects/*.o)
-	$(call RM,$(TARGET))
+	$(call RM,$(TARGET)_test.axf)
+	$(call RM,$(TARGET).axf)
+	$(call RM,./tests/runners/test_mycode_runner.c)
+	$(call RM,./*.htm)
+	$(call RM,./*.map)
+

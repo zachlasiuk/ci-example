@@ -1,0 +1,13 @@
+SECURE_IROM 0x10000000 0x00200000  {    ; load region size_region
+  SECURE_CODE 0x10000000 0x00200000  {  ; load address = execution address
+   *.o (RESET, +First)
+   *(InRoot$$Sections)
+   *(Veneer$$CMSE)                   ; check with partition.h
+   .ANY (+RO)
+   .ANY (+XO)
+  }
+  SECURE_DATA 0x38000000 0x00200000  {  ; RW data
+   .ANY (+RW +ZI)
+  }
+}
+
