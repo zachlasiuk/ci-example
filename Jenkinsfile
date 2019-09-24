@@ -1,10 +1,45 @@
 pipeline {
   agent any
   stages {
-    stage('error') {
+    stage('build') {
+      agent {
+        docker {
+          image 'build-bare-metal-env:latest'
+          args '--network host'
+        }
+
+      }
       steps {
-        sh '''echo \'hi, this is my first step\'
-'''
+        sh '''# Build Test runner
+
+# Source setup code
+. /arm-tools/init.sh 
+
+# Build test runner
+(cd ./bare-metal && make tests)
+
+# Verify existence of test runner code
+cat ./bare-metal/tests/runners/test_mycode_runner.c'''
+        sh '''# Build Test App
+
+# Source setup code
+. /arm-tools/init.sh 
+
+# Build Test axf
+(cd ./bare-metal && make build_test)
+
+# Verify existence of test axf
+cat ./bare-metal/IOTKit_ARMv8MBL_test.axf'''
+        sh '''# Build Production App
+
+# Source setup code
+. /arm-tools/init.sh 
+
+# Build Production axf
+(cd ./bare-metal && make build_prod)
+
+# Verify existence of test axf
+cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
       }
     }
     stage('test') {
