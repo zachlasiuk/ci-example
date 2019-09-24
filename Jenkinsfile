@@ -64,12 +64,9 @@ cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
           steps {
             unstash 'bare-metal-app'
             sh '''# make results directory
+
 mkdir outputs/'''
-            sh '''# Verify where we are
-ls
-ls /
-ls /home/
-ls /arm-tools/
+            sh '''# Run tests
 
 # Source setup code
 . /arm-tools/init.sh
@@ -79,19 +76,17 @@ pkill FVP_MPS2_Cortex
 #/arm-tools/Cortex-M33-FVP/FVP_MPS2_Cortex-M33 -C fvp_mps2.DISABLE_GATING=1 -C fvp_mps2.platform_type=1 --cadi-server &sleep 2s
 
 # Run test
-python bare-metal/model_run.py localhost 7000 /home/IOTKit_ARMv8MBL_test.axf outputs/output.test
+python bare-metal/model_run.py localhost 7000 bare-metal/IOTKit_ARMv8MBL_test.axf outputs/output.test
 
 # Verify test output exists
 cat outputs/output.test'''
             sh '''# Convert to junit output
+
 python /home/unity_to_junit.py outputs/
-ls
+
+# verify result.xml exists
 cat result.xml
 
-'''
-            sh '''#verify unstash successful
-ls
-ls bare-metal/
 '''
           }
         }
