@@ -63,10 +63,3 @@ RUN mkdir /home/output
 
 ### Set License
 ENV ARMLMD_LICENSE_FILE=7010@localhost
-
-
-#### TEMPORARY, TO BE REPLACED LATER
-
-
-### Add software
-COPY IOTKit_ARMv8MBL_test.axf /home/
