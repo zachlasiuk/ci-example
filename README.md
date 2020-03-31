@@ -122,5 +122,25 @@ build-bare-metal-env                                       latest              a
 ```
 
 ## Run Pipeline
-Connect to your fork
+With your environment initalized with the proper Docker images, Arm tools and Jenkins, the time has come to run a job yourself. The first step in doing so is to click 'Open Blue Ocean' on the main Jenkins page (localhost:8080) on the left-hand side. It will instantly prompt you create a new pipeline. Click on it to proceed.
+
+### Creating a new Pipeline
+You already have a pipeline in code predefined, given for free as part of this Git repository. As Jenkins is all about maintaining close in sync with your source code, you will need to connect Jenkins to a source code repository that you have read/write permissions to. The easiest way to get up and running is to fork this repository into your own account and play with it to your heart's content.
+
+If you fork this repo, you can then easily create an ssh key to it via Blue Ocean. Click on 'GitHub' in the Blue Ocean GUI and you'll be prompted to choose one repository under your account. You'll be asked to create an ssh key and will be given a link to do so on your GitHub account. Once this is done on your GitHub account you can copy the ssh key into Jenkins Blue Ocean and proceed by clicking 'Create Pipeline'
+
+### Explore the Example Pipeline
+Having gotten this far you should explore the existing example pipeline provided. The Blue Ocean GUI displays visually what is in the Jenkinsfile in this repository. There are two steps, corrosponding to 2 example IoT companies (one creating a bare-metal application based on C and one creating an embedded-linux based application based on Python). 
+
+The first stage is the build, which builds the bare-metal software using Arm Compiler 6. The embedded linux example does not need to be built as python is an interpreted language, and the embedded linux OS itself can be approximated well by the Linux OS in the cloud machine (this is an approximation, but a fair one for certain unit testing needs).
+
+The second stage are the tests. The bare-metal example runs an Arm Fast Model system with a Cortex-M33 and various peripherals via a python script. The bare-metal example takes the built app from the build stage and uses it during the run stage. The linux example runs a python application in a Docker image via pytest. These tests both output results in a standard format in a result.xml file for Jenkins to read and interpret. 
+
+### Run the Pipeline
+In the Blue Ocean GUI, click on the 'Save' button in the top right. This will kick off your pipeline running and will save any changes you made to the pipeline for that run. Note that the Jenkins environment will pull the latest source code from the repository you linked to it, and will leverage the Docker images built on the Linux machine to perform builds and tests in an isolated environment.
+
+The run should take under a minute and should result in a yellow ! status. That indicates all steps in the pipeline ran without error but not all tests (reported by the result.xml files) passed. If you click into that run and click the 'Tests' tab in the top right of the screen you can see exactly what tests failed, were skipped, and passed. Note this was done on purpose to display what it looks like to have skipped and failed tests.
+
+
+## Expand!
 
