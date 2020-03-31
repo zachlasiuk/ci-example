@@ -12,6 +12,7 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 ## Needed test packages so newer Fast Model versions work (11.10 and up)
+RUN apt-get update -y
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
