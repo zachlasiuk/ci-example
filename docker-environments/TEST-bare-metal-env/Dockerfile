@@ -11,6 +11,10 @@ FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+## Needed test packages so newer Fast Model versions work (11.10 and up)
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+
 RUN apt-get update -y
 
 ### System Functionality ###
@@ -27,6 +31,12 @@ RUN apt-get install -y --fix-missing \
 	libxrandr2   \
 	libxt6       \
 	libxinerama1
+
+## Fast Model newer versions work, update GCC
+RUN apt-get install -y gcc-7 g++-7
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 80 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+
+
 ## Unity Junit conversion dependencies
 RUN pip install pyparsing junit-xml
 
@@ -56,7 +66,7 @@ RUN echo "source /arm-tools/init.sh"
 ### Add FVP
 ARG FVP_TAR=FVP_MPS2_Cortex-M33_11.10_22.tgz
 ADD $FVP_TAR /arm-tools/
-RUN  /arm-tools/FVP_MPS2_Cortex-M33.sh --i-agree-to-the-contained-eula --destination /arm-tools/Cortex-M33-FVP --no-interactive
+RUN /arm-tools/FVP_MPS2_Cortex-M33.sh --i-agree-to-the-contained-eula --destination /arm-tools/Cortex-M33-FVP --no-interactive
 
 ### Add unity2junit result conversion file, make output directory for test results
 ADD unity_to_junit.py /home/
