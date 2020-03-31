@@ -9,8 +9,9 @@ We will need Docker installed to work properly. Run the following command to qui
 ```bash
 curl -fsSL test.docker.com -o get-docker.sh && sh get-docker.sh
 sudo usermod -aG docker $USER
+sudo usermod -aG docker jenkins
 ```
-The second command adds your user to the docker group to enable it to be used without sudo. After running, log out and log back into your machine for it to properly take effect. After logging back in run a simple docker command to make sure it is working correctly:
+The second command adds your user to the docker group to enable it to be used without sudo. The third command adds the jenkins user to the docker group so it also has permissions to run docker without sudo. After running, log out and log back into your machine for it to properly take effect. After logging back in run a simple docker command to make sure it is working correctly:
 ```bash
 docker run hello-world
 ```
@@ -48,4 +49,5 @@ Optionally, As an easier way to view the Jenkins CI pipeline visually you can in
 - Click ‘install without restart’.
 - Let it install, then refresh the page upon completion and navigate back to localhost:8080. A new option on the left called ‘Blue Ocean’ should be present.
 
+## Log into Jenkins and install plugins
 
