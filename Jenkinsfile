@@ -66,8 +66,6 @@ cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
             sh '''# make results directory
 
 mkdir outputs/'''
-            sh '''ls
-ls bare-metal/'''
             sh '''# Run tests
 
 # Source setup code
