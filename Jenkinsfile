@@ -44,6 +44,7 @@ cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
         stash(name: 'bare-metal-app', includes: 'bare-metal/IOTKit_ARMv8MBL_test.axf')
       }
     }
+
     stage('Test') {
       parallel {
         stage('bare-metal') {
@@ -57,7 +58,6 @@ cat ./bare-metal/IOTKit_ARMv8MBL.axf'''
           post {
             always {
               junit '**/result.xml'
-
             }
 
           }
@@ -90,6 +90,7 @@ cat result.xml
 '''
           }
         }
+
         stage('linux') {
           agent {
             docker {
@@ -100,7 +101,6 @@ cat result.xml
           post {
             always {
               junit '**/result.xml'
-
             }
 
           }
@@ -121,7 +121,9 @@ cp outputs/output.test result.xml
 '''
           }
         }
+
       }
     }
+
   }
 }
