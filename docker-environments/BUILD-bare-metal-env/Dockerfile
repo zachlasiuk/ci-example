@@ -1,5 +1,5 @@
 # # Build command
-# #     docker build --build-arg AC_DIR=./ --build-arg AC_INSTALL=DS500-BN-00026-r5p0-14rel0.tgz -t build-bare-metal-env:latest .
+# #     docker build --build-arg AC_DIR=./ --build-arg AC_INSTALL=DS500-BN-00026-r5p0-16rel0.tgz -t build-bare-metal-env:latest .
 #
 # # Run command
 # #     docker run --network host -it build-bare-metal-env:latest
@@ -25,7 +25,7 @@ ARG TMP_DIR=/home/tmp/
 # # Copy Arm Compiler 6 install file from same directory as this Dockerfile
 # MUST set arguments for AC6 tarball during build. Defaults:
 ARG AC_DIR=./
-ARG AC_INSTALL=DS500-BN-00026-r5p0-14rel0.tgz
+ARG AC_INSTALL=DS500-BN-00026-r5p0-16rel0.tgz
 ADD $AC_DIR/$AC_INSTALL $TMP_DIR
 
 # # install AC6 
