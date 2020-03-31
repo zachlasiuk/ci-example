@@ -2,7 +2,7 @@
 
 This README will walk you an example CI pipeline. In fact, TWO pipelines in one: (1) for a Rich IoT Company developing a python application, and (2) for a Low-Power IoT Company developing a bare-metal application in C. Going through this walkthrough will shed light on how to create a basic CI pipeline for either type of embedded software development, quickly.
 
-After going through this README you will have a working CI pipeline example for bare-metal and embedded linux applications, including:
+After going through this README and examining this repo's code you will have a working CI pipeline example for bare-metal and embedded linux applications, including:
 - Setting up a CI server (with Jenkins)
 - Connecting the CI server to a source control repo (with GitHub)
 - Creating isolated slave environments (with Docker containers)
