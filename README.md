@@ -1,5 +1,7 @@
 # ci-example
 
+This readme will walk you through how to reproduce this example code yourself.
+
 ## Machine Setup
 Tested on a new Linux machine, Ubuntu 18.04. Do a apt-get update to make sure your system is up to date:
 - sudo apt-get update
@@ -71,9 +73,36 @@ After this build, if you run ```docker images``` you will be able to see the 'bu
 * Note: You must build the docker container manually as Jenkins performs a 'docker pull'. This method is great for more robust set ups where the machine with Jenkins running is connected to a centeral hub where Dockerfiles of maintained building/testing environments are located. However, for simple systems like this example you need to rebuild the Dockerfiles manually outside Jenkins on your machine upon a change in the image you want to propogate to your CI run environments. You can explore giving Jenkins a Dockerfile instead of a Docker image to see if that works better for your setup.
 
 ### Obtain Arm Fast Models
+You can download the most recent Arm Fast Models package from the Arm website (you may need to signin/create an Arm Developer account to download the tarball):
+https://developer.arm.com/tools-and-software/simulation-models/fast-models
+Grab the Linx version labeled 'Fast Models 11.10 Evaluation Package'. This should download a tarball named:
+FastModels_11-10-022_Linux64.tgz
+As before, you do NOT need to untar the package; Docker will automatically handle that in its environment. 
+
+Again, place this tarball in this specific directory so the Test Dockerfile can find it:
+/ci-example/docker-environments/TEST-base-metal-env/
+
+Following the same proceedure, download the specific Fast Models system based off the Cortex-M33 and place it in the same directory. You can download it here:
+https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms
+and downlaod the 'Cortex-M33 FVP' Linux version.
+FVP_MPS2_Cortex-M33_11.10_22.tgz
+
+Place that tgz in the same directory:
+/ci-example/docker-environments/TEST-base-metal-env/
 
 
+Then verify you can build the dockerfile by running this build command:
+```bash
+docker build -t test-bare-metal-env:latest .
+```
+After this build, if you run ```docker images``` you will be able to see the 'test-bare-metal-env:latest' image availible with FMs compiled inside it.
 
+* Note: Same with this docker image as above; you must build the docker container manually before running with Jenkins for Jenkins to identify it properly.
+
+### Obtain Arm Licenses
+To obtain trail license for both tools please e-mail license.support@arm.com and request a 30 day trial license for Arm Compiler 6 (standalone) and Fast Models, specifing you are using the Cortex-M33 FVP and need both an FVP license and a full Fast Models license (to take advantage of scripting capabilities in the product used in this CI example). The response will be a Serial Number which allows you to create your own license by following the steps below.
+
+## Run
 
 
 
