@@ -1,9 +1,20 @@
 # ci-example
 
-### Machine Setup
-Tested on a new Linux machine, Ubuntu 18.04, with the following packages installed:
+## Machine Setup
+Tested on a new Linux machine, Ubuntu 18.04. Do a apt-get update to make sure your system is up to date:
 - sudo apt-get update
-- sudo apt-get install -y git zip gcc-7 g++-7 make curl libc6-i386 lib32z1 lib32stdc++6                      
+
+## Install Docker
+We will need Docker installed to work properly. Run the following command to quickly and easily install Docker:
+```bash
+curl -fsSL test.docker.com -o get-docker.sh && sh get-docker.sh
+sudo usermod -aG docker $USER
+```
+The second command adds your user to the docker group to enable it to be used without sudo. After running, log out and log back into your machine for it to properly take effect. After logging back in run a simple docker command to make sure it is working correctly:
+```bash
+docker run hello-world
+```
+
 
 ## Set up Jenkins
 First, install java:
