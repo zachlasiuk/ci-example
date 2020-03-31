@@ -1,10 +1,18 @@
 # ci-example
 
-This readme will walk you through how to reproduce this example code yourself.
+This README will walk you an example CI pipeline. In fact, TWO pipelines in one: (1) for a Rich IoT Company developing a python application, and (2) for a Low-Power IoT Company developing a bare-metal application in C. Going through this walkthrough will shed light on how to create a basic CI pipeline for either type of embedded software development, quickly.
+
+After going through this README you will have a working CI pipeline example for bare-metal and embedded linux applications, including:
+- Setting up a CI server (Jenkins)
+- Creating isolated slave environments (Docker containers)
+- 
+
+It is recommended to be at least familer with Jenkins, Docker, and CI before starting this walkthrough.
+
+Let's jump in.
 
 ## Machine Setup
-Tested on a new Linux machine, Ubuntu 18.04. Do a apt-get update to make sure your system is up to date:
-- sudo apt-get update
+I created this example on a fresh Linux machine (using AWS EC2, but you can use another cloud provider, Virtual Machine, or a personal machine just as well). My OS is Ubuntu 18.04, the below examples should work for most Ubuntu versions (but I wouldn't go lower than 16.04). Do a apt-get update to make sure your system is up to date, and you are good to go.
 
 ## Install Docker
 We will need Docker installed to work properly. Run the following command to quickly and easily install Docker:
@@ -143,4 +151,6 @@ The run should take under a minute and should result in a yellow ! status. That 
 
 
 ## Expand!
+Experiment with the various code building blocks here if you are curious about how to change things. Move things around, create new tests, or even add your own software to see how it runs on Arm Fast Models or builds with Arm Compiler 6.
 
+If you have any questions abou the CI example process, Arm tools, etc please send me a message or email at zach.lasiuk@arm.com
