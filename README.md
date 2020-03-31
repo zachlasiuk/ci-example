@@ -1,13 +1,17 @@
-# ci-example
+# Embedded ci-example
 
 This README will walk you an example CI pipeline. In fact, TWO pipelines in one: (1) for a Rich IoT Company developing a python application, and (2) for a Low-Power IoT Company developing a bare-metal application in C. Going through this walkthrough will shed light on how to create a basic CI pipeline for either type of embedded software development, quickly.
 
 After going through this README you will have a working CI pipeline example for bare-metal and embedded linux applications, including:
-- Setting up a CI server (Jenkins)
-- Creating isolated slave environments (Docker containers)
-- 
+- Setting up a CI server (with Jenkins)
+- Connecting the CI server to a source control repo (with GitHub)
+- Creating isolated slave environments (with Docker containers)
+- Creating a build stage in a pipeline and compiling bare-metal software (with Arm Compiler 6)
+- Passing artifacts bewteen CI stages (like a compiled application from the build stage to the test stage)
+- Creating a test stage in a pipeline and running tests for both bare-metal software and embedded linux software (with Arm Fast Models and Docker containers)
+- Gathering test data into machine readable results (via Jenkins and bash scripting)
 
-It is recommended to be at least familer with Jenkins, Docker, and CI before starting this walkthrough.
+It is recommended to be at least familer with GitHub, Docker, and CI before starting this walkthrough. Other concepts will be explained as they arise, like navigating Jenkins and setting up Arm tools.
 
 Let's jump in.
 
