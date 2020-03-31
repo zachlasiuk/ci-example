@@ -112,7 +112,8 @@ After this build, if you run ```docker images``` you will be able to see the 'te
 * Note: Same with this docker image as above; you must build the docker container manually before running with Jenkins for Jenkins to identify it properly.
 
 ### Obtain Arm Licenses
-To obtain trail license for both tools please e-mail license.support@arm.com and request a 30 day trial license for Arm Compiler 6 (standalone) and Fast Models, specifing you are using the Cortex-M33 FVP and need both an FVP license and a full Fast Models license (to take advantage of scripting capabilities in the product used in this CI example). The response will be a Serial Number which allows you to create your own license by following the steps below.
+To obtain trail license for both tools please e-mail license.support@arm.com and request a 30 day trial license for Arm Compiler 6 (standalone) and Fast Models, specifing you are using the Cortex-M33 FVP and need both an FVP license and a full Fast Models license (to take advantage of scripting capabilities in the product used in this CI example). The response will be a Serial Number which allows you to create your own license by following the steps outlined in the 'Product License' section on this GitHub page from Arm: https://github.com/ARM-software/Tool-Solutions/tree/master/hello-world_fast-models
+
 
 ## Build Docker environemnts
 If you followed the steps above you will have already built the environments for:
