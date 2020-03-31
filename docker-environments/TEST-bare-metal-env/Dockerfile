@@ -56,6 +56,7 @@ RUN echo "source /arm-tools/init.sh"
 ### Add FVP
 ARG FVP_TAR=FVP_MPS2_Cortex-M33_11.10_22.tgz
 ADD $FVP_TAR /arm-tools/
+RUN  /arm-tools/FVP_MPS2_Cortex-M33.sh --i-agree-to-the-contained-eula --destination /arm-tools/Cortex-M33-FVP --no-interactive
 
 ### Add unity2junit result conversion file, make output directory for test results
 ADD unity_to_junit.py /home/
