@@ -49,5 +49,31 @@ Optionally, As an easier way to view the Jenkins CI pipeline visually you can in
 - Click ‘install without restart’.
 - Let it install, then refresh the page upon completion and navigate back to localhost:8080. A new option on the left called ‘Blue Ocean’ should be present.
 
-## Log into Jenkins and install plugins
+## Install Arm tools 
+With Jenkins and Docker squared away let's turn to installing the primary tools from Arm in this CI example: Arm Fast Models (FMs) and Arm Compiler 6 (AC6). It is not really 'installing' in the traditional sense as we will just be downloading the tarballs for AC6 and FMs. Placing the tarballs next to the Dockerfiles that need them will enable the Dockerfile to install it in its own image, handeling all the installation and setup itself.
+
+### Obtain Arm Compiler 6
+You can download the most recent Arm Compiler 6 from the Arm website:
+https://developer.arm.com/tools-and-software/embedded/arm-compiler/downloads/version-6
+Grab the Linx version. This should download a tarball named:
+DS500-BN-00026-r5p0-16rel0.tgz
+Note you do NOT need to untar the package; Docker will automatically handle that in its environment. 
+
+Get that tarball into your machine if in the cloud, then place in the correct location. The docker container charged with builds will need the compiler, so place this tarball in this specific directory so the Build Dockerfile can find it:
+/ci-example/docker-environments/BUILD-bare-metal-env/
+
+Then verify you can build the dockerfile by running this build command:
+```bash
+docker build --build-arg AC_DIR=./ --build-arg AC_INSTALL=DS500-BN-00026-r5p0-16rel0.tgz -t build-bare-metal-env:latest .
+```
+After this build, if you run ```docker images``` you will be able to see the 'build-bare-metal-env:latest' image availible with AC6 compiled inside it.
+
+* Note: You must build the docker container manually as Jenkins performs a 'docker pull'. This method is great for more robust set ups where the machine with Jenkins running is connected to a centeral hub where Dockerfiles of maintained building/testing environments are located. However, for simple systems like this example you need to rebuild the Dockerfiles manually outside Jenkins on your machine upon a change in the image you want to propogate to your CI run environments. You can explore giving Jenkins a Dockerfile instead of a Docker image to see if that works better for your setup.
+
+### Obtain Arm Fast Models
+
+
+
+
+
 
