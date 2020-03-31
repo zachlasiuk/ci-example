@@ -102,7 +102,25 @@ After this build, if you run ```docker images``` you will be able to see the 'te
 ### Obtain Arm Licenses
 To obtain trail license for both tools please e-mail license.support@arm.com and request a 30 day trial license for Arm Compiler 6 (standalone) and Fast Models, specifing you are using the Cortex-M33 FVP and need both an FVP license and a full Fast Models license (to take advantage of scripting capabilities in the product used in this CI example). The response will be a Serial Number which allows you to create your own license by following the steps below.
 
-## Run
+## Build Docker environemnts
+If you followed the steps above you will have already built the environments for:
+- Building the bare-metal software
+- Testing the bare-metal software
 
+We need to build the environment for Testing the Linux-based software in python. Luckily everything needed is self-contained in a Dockerfile, so simply navigate to this directory and build the dockerfile:
+```bash
+cd ci-example/docker-environments/TEST-linux-env/
+docker build -t test-linux-env:latest .
+```
 
+Upon completion, running a ```docker images``` command should output at least 3 images:
+```bash
+REPOSITORY                                                 TAG                 IMAGE ID            CREATED             SIZE
+test-linux-env                                             latest              0552797b0a8e        2 minutes ago       424MB
+test-bare-metal-env                                        latest              9e4a8f178966        9 minutes ago       2.13GB
+build-bare-metal-env                                       latest              a4a9a937b1b2        37 minutes ago      1.84GB
+```
+
+## Run Pipeline
+Connect to your fork
 
