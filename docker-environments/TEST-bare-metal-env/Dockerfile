@@ -32,8 +32,8 @@ RUN pip install pyparsing junit-xml
 
 
 ### Tool version selection
-ARG FM_INSTALL=FastModels_11-7-035_Linux64
-ARG FM_DIR=FastModelsTools_11.7
+ARG FM_INSTALL=FastModels_11-10-022_Linux64
+ARG FM_DIR=FastModelsTools_11.10
 
 ### Install Fast Models
 # # Copy Fast Model install file from same directory as this Dockerfile
@@ -54,7 +54,7 @@ RUN echo "source /arm-tools/init.sh"
 
 
 ### Add FVP
-ARG FVP_TAR=Cortex-M33-FVP.tar
+ARG FVP_TAR=FVP_MPS2_Cortex-M33_11.10_22.tgz
 ADD $FVP_TAR /arm-tools/
 
 ### Add unity2junit result conversion file, make output directory for test results
